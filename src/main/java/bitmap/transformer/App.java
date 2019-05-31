@@ -6,44 +6,32 @@ package bitmap.transformer;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class App {
 
-    public String getGreeting() {
-        return "Hello world.";
-    }
-
     public static void main(String[] args) {
         System.out.println(args[0]);
-        System.out.println(new App().getGreeting());
+
         if(args.length != 3){
             //three arguments
             System.out.println("three arguments required");
         }
-//        System.out.println(readFile("src/main/resources/" + args[0]));
-//        System.out.println(grayscale(readFile("src/main/resources/" + args[0])));
-//        System.out.println(saveFile(grayscale(readFile("src/main/resources/" + args[0]))));
-        readFile("src/main/resources/" + args[0]);
-    }
 
-
-    //read a file function
-
-    public static void readFile(String input){
         BufferedImage image;
         try {
-            File bmpFile = new File(input);
+            File bmpFile = new File("src/main/resources/" + args[0]);
             image = ImageIO.read(bmpFile);
             System.out.println(image);
 
-            saveFile(grayscale(image));
+            if (args[2] == "grayscale") {
+                saveFile(grayscale(image), args[1]);
+            }
 
         }
         catch(IOException e) {
+            System.out.println(e);
 
         }
     }
@@ -63,12 +51,11 @@ public class App {
         return img;
     }
 
-
     //write it out to a new file
-    public static void saveFile(final BufferedImage img){
+    public static void saveFile(final BufferedImage img, String output){
         try {
             File f;
-            f = new File("src/main/resources/boygray");
+            f = new File("src/main/resources/" + output);
             ImageIO.write(img, "bmp", f);
         }
         catch(IOException e) {
@@ -76,5 +63,4 @@ public class App {
             System.out.println(e);
         }
     }
-
 }
