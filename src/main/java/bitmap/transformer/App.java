@@ -25,10 +25,9 @@ public class App {
             image = ImageIO.read(bmpFile);
             System.out.println(image);
 
-            if (args[2] == "grayscale") {
+            if (args[2].equals("grayscale")) {
                 saveFile(grayscale(image), args[1]);
             }
-
         }
         catch(IOException e) {
             System.out.println(e);
@@ -43,8 +42,8 @@ public class App {
             for (int y = 0; y < img.getHeight(); y++) {
                 int color = img.getRGB(x, y);
                 Color c = new Color(color);
-                int average = (c.getRed() + c.getBlue() + c.getGreen()) / 3;
-                Color gray = new Color(average, average, average);
+                int avg = (c.getRed() + c.getBlue() + c.getGreen()) / 3;
+                Color gray = new Color(avg, avg, avg);
                 img.setRGB(x, y, gray.getRGB());
             }
         }
