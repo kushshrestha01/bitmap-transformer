@@ -3,6 +3,7 @@
  
 ## Run the program
 To run the program run ./gradlew run --args 'input output transform' where 
+
  input = boy.bmp
 
  output = (outputfilename).bmp
