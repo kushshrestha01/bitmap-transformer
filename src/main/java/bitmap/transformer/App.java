@@ -4,7 +4,9 @@
 package bitmap.transformer;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,15 +24,46 @@ public class App {
             //three arguments
             System.out.println("three arguments required");
         }
-        readFile(args[0]);
+//        System.out.println(readFile("src/main/resources/" + args[0]));
+//        System.out.println(grayscale(readFile("src/main/resources/" + args[0])));
+        System.out.println(saveFile(grayscale(readFile("src/main/resources/" + args[0]))));
     }
 
     //read a file function
-    public static void readFile(String input){
+    public static BufferedImage readFile(String input){
         try {
             File bmpFile = new File(input);
             BufferedImage image = ImageIO.read(bmpFile);
-            System.out.println(image);
+            return image;
+        }
+        catch(IOException e) {
+            BufferedImage imageEmpty = null;
+            return imageEmpty;
+        }
+    }
+
+    //run color transformation
+    public static BufferedImage grayscale(BufferedImage img) {
+
+        for (int x = 0; x < img.getWidth(); x++) {
+            for (int y = 0; y < img.getHeight(); y++) {
+                int color = img.getRGB(x, y);
+                Color c = new Color(color);
+                int average = (c.getRed() + c.getBlue() + c.getGreen()) / 3;
+                Color gray = new Color(average, average, average);
+                img.setRGB(x, y, gray.getRGB());
+            }
+        }
+        return img;
+    }
+
+
+    //write it out to a new file
+    public static BufferedImage saveFile(final BufferedImage img){
+        try {
+            File f;
+            f = new File("src/main/resources/");
+            ImageIO.write(img, "bmp", f);
         }
         catch(IOException e) {
             System.out.println("File not found");
@@ -38,6 +71,4 @@ public class App {
         }
     }
 
-    //run color transformation
-    //write it out to a new file
 }
