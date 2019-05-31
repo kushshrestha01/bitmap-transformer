@@ -9,3 +9,6 @@ To run the program in terminal run ./gradlew run --args 'input output transform'
  output = (outputfilename).bmp
 
  transform = grayscale (Calls the function to convert the boy.bmp to gray)
+ 
+ ### Reference
+ https://www.dyclassroom.com/image-processing-project/how-to-convert-a-color-image-into-grayscale-image-in-java
