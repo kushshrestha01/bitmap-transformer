@@ -8,4 +8,4 @@ To run the program run ./gradlew run --args 'input output transform' where
 
  output = (outputfilename).bmp
 
- transform = grayscale (Calls the function to convert the image to gray)
+ transform = grayscale (Calls the function to convert the boy.bmp to gray)
