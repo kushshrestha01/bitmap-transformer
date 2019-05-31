@@ -26,19 +26,25 @@ public class App {
         }
 //        System.out.println(readFile("src/main/resources/" + args[0]));
 //        System.out.println(grayscale(readFile("src/main/resources/" + args[0])));
-        System.out.println(saveFile(grayscale(readFile("src/main/resources/" + args[0]))));
+//        System.out.println(saveFile(grayscale(readFile("src/main/resources/" + args[0]))));
+        readFile("src/main/resources/" + args[0]);
     }
 
+
     //read a file function
-    public static BufferedImage readFile(String input){
+
+    public static void readFile(String input){
+        BufferedImage image;
         try {
             File bmpFile = new File(input);
-            BufferedImage image = ImageIO.read(bmpFile);
-            return image;
+            image = ImageIO.read(bmpFile);
+            System.out.println(image);
+
+            saveFile(grayscale(image));
+
         }
         catch(IOException e) {
-            BufferedImage imageEmpty = null;
-            return imageEmpty;
+
         }
     }
 
@@ -59,10 +65,10 @@ public class App {
 
 
     //write it out to a new file
-    public static BufferedImage saveFile(final BufferedImage img){
+    public static void saveFile(final BufferedImage img){
         try {
             File f;
-            f = new File("src/main/resources/");
+            f = new File("src/main/resources/boygray");
             ImageIO.write(img, "bmp", f);
         }
         catch(IOException e) {
