@@ -2,7 +2,7 @@
  This lab is bitmap transformer CLI.
  
 ## Run the program
-To run the program run ./gradlew run --args 'input output transform' where 
+To run the program in terminal run ./gradlew run --args 'input output transform' where 
 
  input = boy.bmp
 
