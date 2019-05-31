@@ -3,12 +3,41 @@
  */
 package bitmap.transformer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class App {
+
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
+        System.out.println(args[0]);
         System.out.println(new App().getGreeting());
+        if(args.length != 3){
+            //three arguments
+            System.out.println("three arguments required");
+        }
+        readFile(args[0]);
     }
+
+    //read a file function
+    public static void readFile(String input){
+        try {
+            File bmpFile = new File(input);
+            BufferedImage image = ImageIO.read(bmpFile);
+            System.out.println(image);
+        }
+        catch(IOException e) {
+            System.out.println("File not found");
+            System.out.println(e);
+        }
+    }
+
+    //run color transformation
+    //write it out to a new file
 }
